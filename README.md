@@ -11,4 +11,4 @@ Run `make` from the repository root. This will build the executable __'solver'__
 Run `make test` from the repository root. This will build the executable and run it with each instance from the __'tests'__ directory.
 
 ## Multitest
-Run `python multitest.py` from the repository root. This will test every combination of parameters and implementations.
+Run `python multitest.py` from the repository root. This will test every combination of parameters and implementations (and store the results to a __'results.txt'__ file).
