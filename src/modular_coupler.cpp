@@ -33,3 +33,25 @@ Solution OnePointCoupler::couple(const std::pair<const Solution*, const Solution
 
     return child;
 }
+
+Solution OrderCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const
+{
+    Solution child;
+
+    (void) parents;
+    (void) random;
+    error("TODO: Implement OrderCoupler");
+
+    return child;
+}
+
+Solution OrderBasedCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const
+{
+    Solution child;
+
+    (void) parents;
+    (void) random;
+    error("TODO: Implement OrderBasedCoupler");
+
+    return child;
+}

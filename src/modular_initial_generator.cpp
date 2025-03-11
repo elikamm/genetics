@@ -1,4 +1,5 @@
 #include <modular_initial_generator.hpp>
+#include <solver.hpp>
 #include <algorithm>
     
 Population RandomInitialGenerator::generate(const Instance& instance, std::default_random_engine& random) const
@@ -17,6 +18,28 @@ Population RandomInitialGenerator::generate(const Instance& instance, std::defau
 
         population.solutions.push_back(solution);
     }
+
+    return population;
+}
+
+Population HeuristicInitialGenerator::generate(const Instance& instance, std::default_random_engine& random) const
+{
+    Population population { population_size };
+
+    (void) instance;
+    (void) random;
+    error("TODO: Implement RandomInitialGenerator");
+
+    return population;
+}
+
+Population FixedInitialGenerator::generate(const Instance& instance, std::default_random_engine& random) const
+{
+    Population population { population_size };
+
+    (void) instance;
+    (void) random;
+    error("TODO: Implement FixedInitialGenerator");
 
     return population;
 }

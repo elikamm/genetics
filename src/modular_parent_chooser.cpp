@@ -1,4 +1,5 @@
 #include <modular_parent_chooser.hpp>
+#include <solver.hpp>
 
 std::vector<std::pair<const Solution*, const Solution*>> RandomParentChooser::choose(const Population& population, std::default_random_engine& random) const
 {
@@ -13,6 +14,30 @@ std::vector<std::pair<const Solution*, const Solution*>> RandomParentChooser::ch
                 &population.solutions[random() % population_size]
             }
         );
+
+    return parents;
+}
+
+std::vector<std::pair<const Solution*, const Solution*>> RouletteParentChooser::choose(const Population& population, std::default_random_engine& random) const
+{
+    std::vector<std::pair<const Solution*, const Solution*>> parents;
+
+    (void) choose_count;
+    (void) population;
+    (void) random;
+    error("TODO: Implement RouletteParentChooser");
+
+    return parents;
+}
+
+std::vector<std::pair<const Solution*, const Solution*>> RankedParentChooser::choose(const Population& population, std::default_random_engine& random) const
+{
+    std::vector<std::pair<const Solution*, const Solution*>> parents;
+
+    (void) choose_count;
+    (void) population;
+    (void) random;
+    error("TODO: Implement RankedParentChooser");
 
     return parents;
 }

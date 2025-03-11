@@ -17,3 +17,8 @@ void WorstSolutionKiller::kill(Population& population) const
         );
     }
 }
+
+void WorseThanBestSolutionKiller::kill(Population& population) const
+{
+    (void) population;
+}

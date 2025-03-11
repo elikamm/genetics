@@ -14,3 +14,9 @@ class AbsoluteFitnessCalculator : public FitnessCalculator
 public:
     void calculate(Population& population, const Instance& instance) const override;
 };
+
+class RelativeFitnessCalculator : public FitnessCalculator
+{
+public:
+    void calculate(Population& population, const Instance& instance) const override;
+};

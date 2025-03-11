@@ -1,13 +1,13 @@
 CONFIGS = {
-    'COUPLER':              [ 'OnePointCoupler', ],
-    'FITNESS_CALCULATOR':   [ 'AbsoluteFitnessCalculator', ],
-    'INITIAL_GENERATOR':    [ 'RandomInitialGenerator', ],
+    'COUPLER':              [ 'OnePointCoupler', 'OrderCoupler', 'OrderBasedCoupler', ],
+    'FITNESS_CALCULATOR':   [ 'AbsoluteFitnessCalculator', 'RelativeFitnessCalculator', ],
+    'INITIAL_GENERATOR':    [ 'RandomInitialGenerator', 'HeuristicInitialGenerator', 'FixedInitialGenerator', ],
     'POPULATION_SIZE':      [ '100', ],
-    'MUTATION_MAKER':       [ 'NoMutationMaker', ],
-    'PARENT_CHOOSER':       [ 'RandomParentChooser', ],
+    'MUTATION_MAKER':       [ 'NoMutationMaker', 'SwapMutationMaker', ],
+    'PARENT_CHOOSER':       [ 'RandomParentChooser', 'RouletteParentChooser', 'RankedParentChooser', ],
     'PARENT_COUNT':         [ '50', ],
-    'SOLUTION_KILLER':      [ 'WorstSolutionKiller', ],
-    'STOPPER':              [ 'TimeStopper', 'IterationStopper', ],
+    'SOLUTION_KILLER':      [ 'WorstSolutionKiller', 'WorseThanBestSolutionKiller', ],
+    'STOPPER':              [ 'IterationStopper', ], # 'TimeStopper', ],
     'STOPPER_DURATION':     [ '10', ],
 }
 

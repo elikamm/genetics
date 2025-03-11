@@ -13,3 +13,9 @@ class NoMutationMaker : public MutationMaker
 public:
     void mutate(Solution& solution) const override;
 };
+
+class SwapMutationMaker : public MutationMaker
+{
+public:
+    void mutate(Solution& solution) const override;
+};

@@ -15,3 +15,15 @@ class OnePointCoupler : public Coupler
 public:
     Solution couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const override; 
 };
+
+class OrderCoupler : public Coupler
+{
+public:
+    Solution couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const override; 
+};
+
+class OrderBasedCoupler : public Coupler
+{
+public:
+    Solution couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const override; 
+};

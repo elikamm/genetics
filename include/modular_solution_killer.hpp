@@ -14,3 +14,9 @@ class WorstSolutionKiller : public SolutionKiller
 public:
     void kill(Population& population) const override;
 };
+
+class WorseThanBestSolutionKiller : public SolutionKiller
+{
+public:
+    void kill(Population& population) const override;
+};
