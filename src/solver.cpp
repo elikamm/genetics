@@ -1,3 +1,4 @@
+#define CURRENT_TIME std::chrono::system_clock::now().time_since_epoch().count()
 #include "../config.hpp"
 
 #include <solver.hpp>
@@ -19,8 +20,8 @@ int main(int argc, char **argv)
     Instance instance { argv[1] };
     info("solving ", argv[1], " (size ", instance.get_size(), ')');
 
-    std::default_random_engine random;
-    random.seed(std::chrono::system_clock::now().time_since_epoch().count());
+    std::mt19937_64 random;
+    random.seed(SEED);
 
     COUPLER coupler {};
     FITNESS_CALCULATOR fitness_calculator {};

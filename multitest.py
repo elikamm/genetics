@@ -1,4 +1,5 @@
 CONFIGS = {
+    'SEED':                 [ '42' ],
     'COUPLER':              [ 'OnePointCoupler', 'OrderCoupler', 'OrderBasedCoupler', ],
     'FITNESS_CALCULATOR':   [ 'AbsoluteFitnessCalculator', 'RelativeFitnessCalculator', ],
     'INITIAL_GENERATOR':    [ 'RandomInitialGenerator', 'HeuristicInitialGenerator', 'FixedInitialGenerator', ],

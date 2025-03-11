@@ -1,3 +1,6 @@
+// Seed: CURRENT_TIME, 1, 2, ...
+#define SEED CURRENT_TIME
+
 // Coupler: OnePointCoupler, OrderCoupler, OrderBasedCoupler
 #define COUPLER OnePointCoupler
 
@@ -20,4 +23,4 @@
 
 // Stopper: TimeStopper, IterationStopper
 #define STOPPER IterationStopper
-#define STOPPER_DURATION 1000
+#define STOPPER_DURATION 10

@@ -1,7 +1,7 @@
 #include <modular_parent_chooser.hpp>
 #include <solver.hpp>
 
-std::vector<std::pair<const Solution*, const Solution*>> RandomParentChooser::choose(const Population& population, std::default_random_engine& random) const
+std::vector<std::pair<const Solution*, const Solution*>> RandomParentChooser::choose(const Population& population, std::mt19937_64& random) const
 {
     std::vector<std::pair<const Solution*, const Solution*>> parents;
 
@@ -18,7 +18,7 @@ std::vector<std::pair<const Solution*, const Solution*>> RandomParentChooser::ch
     return parents;
 }
 
-std::vector<std::pair<const Solution*, const Solution*>> RouletteParentChooser::choose(const Population& population, std::default_random_engine& random) const
+std::vector<std::pair<const Solution*, const Solution*>> RouletteParentChooser::choose(const Population& population, std::mt19937_64& random) const
 {
     std::vector<std::pair<const Solution*, const Solution*>> parents;
 
@@ -30,7 +30,7 @@ std::vector<std::pair<const Solution*, const Solution*>> RouletteParentChooser::
     return parents;
 }
 
-std::vector<std::pair<const Solution*, const Solution*>> RankedParentChooser::choose(const Population& population, std::default_random_engine& random) const
+std::vector<std::pair<const Solution*, const Solution*>> RankedParentChooser::choose(const Population& population, std::mt19937_64& random) const
 {
     std::vector<std::pair<const Solution*, const Solution*>> parents;
 

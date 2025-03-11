@@ -2,7 +2,7 @@
 #include <solver.hpp>
 #include <algorithm>
     
-Population RandomInitialGenerator::generate(const Instance& instance, std::default_random_engine& random) const
+Population RandomInitialGenerator::generate(const Instance& instance, std::mt19937_64& random) const
 {
     Population population { population_size };
 
@@ -22,7 +22,7 @@ Population RandomInitialGenerator::generate(const Instance& instance, std::defau
     return population;
 }
 
-Population HeuristicInitialGenerator::generate(const Instance& instance, std::default_random_engine& random) const
+Population HeuristicInitialGenerator::generate(const Instance& instance, std::mt19937_64& random) const
 {
     Population population { population_size };
 
@@ -33,7 +33,7 @@ Population HeuristicInitialGenerator::generate(const Instance& instance, std::de
     return population;
 }
 
-Population FixedInitialGenerator::generate(const Instance& instance, std::default_random_engine& random) const
+Population FixedInitialGenerator::generate(const Instance& instance, std::mt19937_64& random) const
 {
     Population population { population_size };
 

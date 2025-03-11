@@ -2,7 +2,7 @@
 #include <solver.hpp>
 #include <algorithm>
 
-Solution OnePointCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const
+Solution OnePointCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::mt19937_64& random) const
 {
     Solution child;
 
@@ -34,7 +34,7 @@ Solution OnePointCoupler::couple(const std::pair<const Solution*, const Solution
     return child;
 }
 
-Solution OrderCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const
+Solution OrderCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::mt19937_64& random) const
 {
     Solution child;
 
@@ -45,7 +45,7 @@ Solution OrderCoupler::couple(const std::pair<const Solution*, const Solution*>&
     return child;
 }
 
-Solution OrderBasedCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::default_random_engine& random) const
+Solution OrderBasedCoupler::couple(const std::pair<const Solution*, const Solution*>& parents, std::mt19937_64& random) const
 {
     Solution child;
 

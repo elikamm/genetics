@@ -7,7 +7,7 @@
 class InitialGenerator
 {
 public:
-    virtual Population generate(const Instance& instance, std::default_random_engine& random) const = 0;
+    virtual Population generate(const Instance& instance, std::mt19937_64& random) const = 0;
 };
 
 class RandomInitialGenerator : public InitialGenerator
@@ -17,7 +17,7 @@ class RandomInitialGenerator : public InitialGenerator
 public:
     explicit RandomInitialGenerator(int population_size) : population_size(population_size) {};
 
-    Population generate(const Instance& instance, std::default_random_engine& random) const override;
+    Population generate(const Instance& instance, std::mt19937_64& random) const override;
 };
 
 class HeuristicInitialGenerator : public InitialGenerator
@@ -27,7 +27,7 @@ class HeuristicInitialGenerator : public InitialGenerator
 public:
     explicit HeuristicInitialGenerator(int population_size) : population_size(population_size) {};
 
-    Population generate(const Instance& instance, std::default_random_engine& random) const override;
+    Population generate(const Instance& instance, std::mt19937_64& random) const override;
 };
 
 class FixedInitialGenerator : public InitialGenerator
@@ -37,5 +37,5 @@ class FixedInitialGenerator : public InitialGenerator
 public:
     explicit FixedInitialGenerator(int population_size) : population_size(population_size) {};
 
-    Population generate(const Instance& instance, std::default_random_engine& random) const override;
+    Population generate(const Instance& instance, std::mt19937_64& random) const override;
 };
