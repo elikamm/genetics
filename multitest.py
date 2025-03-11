@@ -1,4 +1,4 @@
-TESTS = {
+CONFIGS = {
     'COUPLER':              [ 'OnePointCoupler', ],
     'FITNESS_CALCULATOR':   [ 'AbsoluteFitnessCalculator', ],
     'INITIAL_GENERATOR':    [ 'RandomInitialGenerator', ],
@@ -11,49 +11,97 @@ TESTS = {
     'STOPPER_DURATION':     [ '10', ],
 }
 
-INSTANCE = 'tests/a280.txt'
-
 ##########################################
 
+import sys
 import itertools
 import re
 import time
 import subprocess
 
-def main():
-    results = open('results.txt', 'w')
+def info(message):
+    print('\x1b[1;34minfo:   \x1b[0;34m{}\x1b[0m'.format(message))
 
-    combinations = itertools.product(*TESTS.values())
+def error(message):
+    print('\x1b[1;31merror:  \x1b[0;31m{}\x1b[0m'.format(message))
+
+def result(message):
+    print('\x1b[1;32mresult: \x1b[0;32m{}\x1b[0m'.format(message))
+
+def main(args):
+    if len(args) < 2:
+        error('missing instance')
+        return
+    instance_path = args[1]
+
+    results_file = open('results.txt', 'w')
+
+    total_combinations = 1
+    current_combination = 0
+    for config in CONFIGS:
+        total_combinations *= len(CONFIGS[config])
+
+    combinations = itertools.product(*CONFIGS.values())
 
     for combination in combinations:
-        test(dict(zip(TESTS.keys(), combination)), results)
+        current_combination += 1
+        info(
+            'testing config {}/{} ({}%)'.format(
+                current_combination,
+                total_combinations,
+                round(current_combination / total_combinations * 100)
+            )
+        )
+
+        test(dict(zip(CONFIGS.keys(), combination)), instance_path, results_file)
+
         time.sleep(1)
 
-    results.close()
+    results_file.close()
 
-def test(combination, results):
-    with open('config.hpp', 'w') as config:
-        for setting in combination:
-            config.write('#define ' + setting + ' ' + combination[setting] + '\n')
+def test(combination, instance_path, results_file):
+    results_file.write('==========================================\n')
 
-    subprocess.run([ 'make' ])
+    config_file = open('config.hpp', 'w')
 
-    solver = subprocess.run(
-        [ 'bin/solver', INSTANCE ],
+    for config in combination:
+        config_file.write('#define {} {}\n'.format(config, combination[config]))
+        results_file.write('  {}: {}\n'.format(config, combination[config]))
+
+    config_file.close()
+
+    make_process = subprocess.run(
+        [ 'make' ],
         capture_output = True,
         text = True
     )
 
-    results.write('==========================================\n')
-    for setting in combination:
-        results.write('  ' + setting + ': ' + combination[setting] + '\n')
+    line_indicator = 'x'
+    process_output = make_process.stdout + make_process.stderr
 
-    output = solver.stdout + solver.stderr
-    output = re.sub(r'\x1b[^m]*m', '', output)
-    output = re.sub(r'\n(?!$)', '\n    > ', output)
+    if make_process.returncode != 0:
+        error('compilation failed')
+    else:
+        solver_process = subprocess.run(
+            [ 'bin/solver', instance_path ],
+            capture_output = True,
+            text = True
+        )
 
-    results.write('    > ' + output + '\n')
-    results.flush()
+        process_output = solver_process.stdout + solver_process.stderr
+
+        if solver_process.returncode != 0:
+            error('test failed')
+        else:
+            result('test succeeded')
+            line_indicator = '>'
+    
+    new_line = '\n    {} '.format(line_indicator)
+    process_output = re.sub(r'\x1b[^m]*m', '', process_output)
+    process_output = re.sub(r'\n(?!$)', new_line, process_output)
+
+    results_file.write('    {} {}\n'.format(line_indicator, process_output))
+    results_file.flush()
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)
