@@ -14,6 +14,7 @@ CONFIGS = {
 ##########################################
 
 import sys
+import atexit
 import itertools
 import re
 import time
@@ -28,11 +29,36 @@ def error(message):
 def result(message):
     print('\x1b[1;32mresult: \x1b[0;32m{}\x1b[0m'.format(message))
 
+stored_config_file = ""
+
+def store_config_file():
+    global stored_config_file
+    config_file = open('config.hpp', 'r')
+
+    while True:
+        buffer = config_file.read(1024)
+        if not buffer:
+            break
+        stored_config_file += buffer
+
+    config_file.close()
+
+def restore_config_file():
+    global stored_config_file
+    config_file = open('config.hpp', 'w')
+
+    config_file.write(stored_config_file)
+
+    config_file.close()
+
 def main(args):
     if len(args) < 2:
         error('missing instance')
         return
     instance_path = args[1]
+
+    store_config_file()
+    atexit.register(restore_config_file)
 
     results_file = open('results.txt', 'w')
 
