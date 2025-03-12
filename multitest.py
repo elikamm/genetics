@@ -15,6 +15,7 @@ CONFIGS = {
 ##########################################
 
 import sys
+import pathlib
 import atexit
 import itertools
 import re
@@ -61,7 +62,7 @@ def main(args):
     store_config_file()
     atexit.register(restore_config_file)
 
-    results_file = open('results.txt', 'w')
+    results_file = open('results_{}.txt'.format(pathlib.Path(instance_path).stem), 'w')
 
     total_combinations = 1
     current_combination = 0
