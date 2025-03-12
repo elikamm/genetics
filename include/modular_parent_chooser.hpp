@@ -9,7 +9,7 @@
 class ParentChooser
 {
 public:
-    virtual std::vector<std::pair<const Solution*, const Solution*>> choose(const Population& population, std::mt19937_64& random) const = 0;
+    virtual std::vector<std::pair<const Solution*, const Solution*>> choose(Population& population, std::mt19937_64& random) const = 0;
 };
 
 class RandomParentChooser : public ParentChooser
@@ -19,7 +19,7 @@ class RandomParentChooser : public ParentChooser
 public:
     explicit RandomParentChooser(int choose_count) : choose_count(choose_count) {};
 
-    std::vector<std::pair<const Solution*, const Solution*>> choose(const Population& population, std::mt19937_64& random) const override;
+    std::vector<std::pair<const Solution*, const Solution*>> choose(Population& population, std::mt19937_64& random) const override;
 };
 
 class RouletteParentChooser : public ParentChooser
@@ -29,7 +29,7 @@ class RouletteParentChooser : public ParentChooser
 public:
     explicit RouletteParentChooser(int choose_count) : choose_count(choose_count) {};
 
-    std::vector<std::pair<const Solution*, const Solution*>> choose(const Population& population, std::mt19937_64& random) const override;
+    std::vector<std::pair<const Solution*, const Solution*>> choose(Population& population, std::mt19937_64& random) const override;
 };
 
 class RankedParentChooser : public ParentChooser
@@ -39,5 +39,5 @@ class RankedParentChooser : public ParentChooser
 public:
     explicit RankedParentChooser(int choose_count) : choose_count(choose_count) {};
 
-    std::vector<std::pair<const Solution*, const Solution*>> choose(const Population& population, std::mt19937_64& random) const override;
+    std::vector<std::pair<const Solution*, const Solution*>> choose(Population& population, std::mt19937_64& random) const override;
 };
