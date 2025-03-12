@@ -24,22 +24,64 @@ Population RandomInitialGenerator::generate(const Instance& instance, std::mt199
 
 Population HeuristicInitialGenerator::generate(const Instance& instance, std::mt19937_64& random) const
 {
+    (void) random;
+
     Population population { population_size };
 
-    (void) instance;
-    (void) random;
-    error("TODO: Implement RandomInitialGenerator");
+    std::vector<int> tour = { 0 };
+
+    for (int i = 1; i < instance.get_size(); ++i)
+    {
+        double lowest_cost = INFINITY;
+        int next = -1;
+
+        for (int j = 1; j < instance.get_size(); ++j)
+        {
+            double cost = instance.get_cost(tour[tour.size() - 1], j);
+
+            if (std::find(tour.begin(), tour.end(), j) == tour.end() && cost < lowest_cost)
+            {
+                lowest_cost = cost;
+                next = j;
+            }
+        }
+
+        tour.push_back(next);
+    }
+
+    for (int i = 0; i < population_size; ++i)
+    {
+        Solution solution;
+
+        solution.path = tour;
+
+        population.solutions.push_back(solution);
+    }
 
     return population;
 }
 
 Population FixedInitialGenerator::generate(const Instance& instance, std::mt19937_64& random) const
 {
+    (void) random;
+
     Population population { population_size };
 
-    (void) instance;
-    (void) random;
-    error("TODO: Implement FixedInitialGenerator");
+    std::vector<int> tour;
+
+    for (int i = 0; i < instance.get_size(); ++i)
+    {
+        tour.push_back(i);
+    }
+
+    for (int i = 0; i < population_size; ++i)
+    {
+        Solution solution;
+
+        solution.path = tour;
+
+        population.solutions.push_back(solution);
+    }
 
     return population;
 }
