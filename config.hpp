@@ -8,11 +8,11 @@
 #define FITNESS_CALCULATOR AbsoluteFitnessCalculator
 
 // InitialGenerator: RandomInitialGenerator, HeuristicInitialGenerator, FixedInitialGenerator
-#define INITIAL_GENERATOR RandomInitialGenerator
+#define INITIAL_GENERATOR HeuristicInitialGenerator
 #define POPULATION_SIZE 100
 
 // MutationMaker: NoMutationMaker, SwapMutationMaker
-#define MUTATION_MAKER NoMutationMaker
+#define MUTATION_MAKER SwapMutationMaker
 
 // ParentChooser: RandomParentChooser, RouletteParentChooser, RankedParentChooser
 #define PARENT_CHOOSER RandomParentChooser
@@ -23,4 +23,4 @@
 
 // Stopper: TimeStopper, IterationStopper
 #define STOPPER IterationStopper
-#define STOPPER_DURATION 10
+#define STOPPER_DURATION 100
