@@ -45,7 +45,7 @@ int main(int argc, char **argv)
         {
             Solution child = coupler.couple(parents, random);
 
-            mutation_maker.mutate(child);
+            mutation_maker.mutate(child, random);
 
             children.push_back(child);
         }
