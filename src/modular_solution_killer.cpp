@@ -20,5 +20,22 @@ void WorstSolutionKiller::kill(Population& population) const
 
 void WorseThanBestSolutionKiller::kill(Population& population) const
 {
-    (void) population;
+    std::sort(population.solutions.begin(), population.solutions.end());
+
+    double threshold = population.solutions[population.solutions.size() - 1].fitness * .9;
+
+    int last_good;
+
+    for (int i = population.solutions.size() - 1; i >= 0; --i)
+    {
+        if (population.solutions[i].fitness >= threshold)
+            last_good = i;
+        else
+            break;
+    }
+
+    population.solutions.erase(
+        population.solutions.begin(),
+        population.solutions.begin() + last_good
+    );
 }
