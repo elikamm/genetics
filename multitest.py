@@ -86,6 +86,10 @@ def main(args):
 
     results_file.close()
 
+    for _ in range(0, 3):
+        print('\x07', end='', flush=True)
+        time.sleep(1)
+
 def test(combination, instance_path, results_file):
     results_file.write('==========================================\n')
 
