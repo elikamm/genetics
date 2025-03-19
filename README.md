@@ -7,6 +7,9 @@ Edit the __'config.hpp'__ file to modify parameters and implementations of the s
 ## Build
 Run `make` from the repository root. This will build the executable __'solver'__ (inside a __'bin'__ directory).
 
+Alternatively create a __'build'__ directory and run `cmake ..` and `cmake --build .` from there. This will build the executable __'solver'__ (inside that directory)  
+**WARNING:** Notice that the makefile targets and __'multitest.py'__ do not work with CMake.
+
 ## Build and Test
 Run `make test` from the repository root. This will build the executable and run it with each instance from the __'tests'__ directory.
 
